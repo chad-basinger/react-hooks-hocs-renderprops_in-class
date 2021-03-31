@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const styles = {
     default: {
@@ -16,19 +16,27 @@ const styles = {
       background: 'linear-gradient(to bottom, #000000 ,#434343 50%',
       color: 'white',
     },
+
+    pinkMode: {
+      background: '#ffc0cb',
+      color: 'white'
+    }
   }
 
-//push props into a component
 const withStyles = (WrappedComponent) => {
-
     return (props) => {
         let style = { ...styles.default }
-    //Styles will default to the default styling
-    if (props.darkMode) {
-      style = { ...style, ...styles.darkMode }
-    }
-        return <WrappedComponent {...props} style={{style}}/>
+        //Styles will default to the default styling
+        if (props.darkMode) {
+          style = { ...style, ...styles.darkMode }
+        }
+        //If a prop of darkMode is provided, it will switch some of the styles to reflect that.
+        if (props.pinkMode) {
+          style = { ...style, ...styles.pinkMode }
+        }
+
+        return <WrappedComponent {...props} style={style}/>
     }
 }
 
-export default withStyles
+export default withStyles;
